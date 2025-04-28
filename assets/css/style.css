@@ -1,0 +1,77 @@
+/* Box model reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Alap test- és tipográfia-beállítások */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+/* Központi konténerek */
+header,
+main,
+footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Vízi­szintes menü flexbox-szal */
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;    /* ha szűkül a hely, sorba törnek a menüpontok */
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: block;
+  background: #333;
+  color: #fff;
+  border-radius: 4px;
+}
+
+nav ul li a:hover {
+  background: #555;
+}
+
+/* Media query mobilra (max 768px) */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;   /* menüpontok egymás alatt */
+    gap: 0.5rem;
+  }
+  nav ul li a {
+    font-size: 1.2rem;        /* nagyobb gombok mobilra */
+  }
+}
+
+/* Képek, videók, térképek rugalmasan */
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Fő tartalom stílus */
+main {
+  padding-top: 0.5rem;
+}
+
+/* Lábléc középre */
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}
