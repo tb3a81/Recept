@@ -1,77 +1,84 @@
-/* Box model reset */
+/* Reset */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Alap test- és tipográfia-beállítások */
+/* Alapbeállítások */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f5f0;
+  color: #333;
 }
 
-/* Központi konténerek */
-header,
-main,
-footer {
-  max-width: 1200px;
-  margin: 0 auto;
+/* Fejléc */
+header {
+  background-color: #8fbc8f;
   padding: 1rem;
+  text-align: center;
+  color: white;
 }
 
-/* Vízi­szintes menü flexbox-szal */
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* Menü */
 nav ul {
   list-style: none;
   display: flex;
-  flex-wrap: wrap;    /* ha szűkül a hely, sorba törnek a menüpontok */
+  justify-content: center;
   gap: 1rem;
   padding: 0;
-  margin: 0;
+  margin: 0.5rem 0 0 0;
+  background-color: #6a9c6a;
 }
 
 nav ul li a {
-  text-decoration: none;
-  padding: 0.5rem 1rem;
   display: block;
-  background: #333;
-  color: #fff;
-  border-radius: 4px;
+  padding: 0.7rem 1.2rem;
+  text-decoration: none;
+  color: white;
+  background-color: #6a9c6a;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
 nav ul li a:hover {
-  background: #555;
+  background-color: #7fbf7f;
 }
 
-/* Media query mobilra (max 768px) */
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;   /* menüpontok egymás alatt */
-    gap: 0.5rem;
-  }
-  nav ul li a {
-    font-size: 1.2rem;        /* nagyobb gombok mobilra */
-  }
+/* Fő tartalom */
+main {
+  padding: 2rem;
+  text-align: center;
 }
 
-/* Képek, videók, térképek rugalmasan */
-img,
-video,
-iframe {
+/* Videók és térkép */
+video, iframe {
   max-width: 100%;
   height: auto;
-  display: block;
+  margin-top: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Fő tartalom stílus */
-main {
-  padding-top: 0.5rem;
-}
-
-/* Lábléc középre */
+/* Lábléc */
 footer {
   text-align: center;
   font-size: 0.9rem;
-  color: #666;
+  padding: 1rem;
+  background-color: #8fbc8f;
+  color: white;
+  margin-top: 2rem;
+}
+
+/* Reszponzivitás */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+  }
 }
