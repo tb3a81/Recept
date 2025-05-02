@@ -1,5 +1,4 @@
 <?php
-// config.php
 
 return [
     'sitename' => 'Receptgyűjtemény',

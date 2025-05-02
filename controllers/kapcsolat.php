@@ -1,11 +1,15 @@
 <?php
-// controllers/kapcsolat.php
 
-
-// PDO csatlakozás (állítsd be a saját adatbázis-kredencialistád)
-$pdo = new PDO('mysql:host=localhost;dbname=receptdb;charset=utf8mb4','root','',[
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
+try {
+    $pdo = new PDO(
+        'mysql:host=localhost;dbname=adatbf;charset=utf8mb4',
+        'adatbf',
+        'Gamfweb2025!', 
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+} catch (PDOException $e) {
+    die("Adatbázis‐kapcsolódási hiba: " . $e->getMessage());
+}
 
 $hibak = [];
 $siker = false;
@@ -15,8 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email  = trim($_POST['email']  ?? '');
     $szoveg = trim($_POST['szoveg'] ?? '');
 
-    // Szerveroldali validáció
-    if (strlen($nev) < 5) {
+    if (mb_strlen($nev) < 5) {
         $hibak[] = 'A névnek legalább 5 karakter hosszúnak kell lennie.';
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -28,12 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($hibak)) {
         $stmt = $pdo->prepare(
-            'INSERT INTO uzenetek (nev, email, szoveg) VALUES (:nev,:email,:szoveg)'
+            'INSERT INTO uzenetek (nev, email, szoveg) 
+             VALUES (:nev, :email, :szoveg)'
         );
         $stmt->execute([
             ':nev'    => $nev,
             ':email'  => $email,
-            ':szoveg' => $szoveg
+            ':szoveg' => $szoveg,
         ]);
         $siker = true;
     }
@@ -70,7 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <textarea id="szoveg" name="szoveg" rows="5" required></textarea><br><br>
 
       <button type="submit" id="kuld">Küldés</button>
-      <button type="button" onclick="ellenorizKapcsolat();">Ellenőriz</button>
     </form>
   <?php endif; ?>
 </section>

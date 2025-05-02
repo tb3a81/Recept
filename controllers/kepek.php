@@ -1,5 +1,4 @@
 <?php
-// controllers/kepek.php
 
 $uzenet = "";
 
