@@ -1,28 +1,20 @@
 <?php
-
 if (!isset($_SESSION['user'])) {
     echo '<p>Kérlek, jelentkezz be az üzenetek megtekintéséhez.</p>';
-    return;
-}
-
+    return;}
 try {
     $pdo = new PDO(
         'mysql:host=localhost;dbname=adatbf;charset=utf8mb4',
         'adatbf',
         'Gamfweb2025!',
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION] );
 } catch (PDOException $e) {
-    die("Adatbázis‐kapcsolódási hiba: " . $e->getMessage());
-}
-
+    die("Adatbázis‐kapcsolódási hiba: " . $e->getMessage());}
 $stmt = $pdo->query("
     SELECT nev, szoveg, created_at 
       FROM uzenetek 
-  ORDER BY created_at DESC
-");
-$uzenetek = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
+  ORDER BY created_at DESC");
+$uzenetek = $stmt->fetchAll(PDO::FETCH_ASSOC);?>
 <section>
   <h2>Üzenetek</h2>
   <?php if (empty($uzenetek)): ?>

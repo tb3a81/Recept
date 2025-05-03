@@ -241,7 +241,27 @@ main {
     padding: 1rem;
   }
 }
+/* ================== FOOTER ================== */
+footer {
+  background-color: #8fbc8f;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem 1rem;     
+  margin-top: 2rem;
+}
 
+footer .footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+
+footer .creator {
+  display: block;
+  font-size: 0.85rem;
+  color: #e0f4e0;           
+  margin-top: 0.5rem;
+}
 
 
 
