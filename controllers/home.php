@@ -38,24 +38,134 @@
 
   <!-- Rántotthús receptek -->
   <section class="home-recipes">
-    <h2>Legjobb rántotthúsaink</h2>
-    <table class="recipe-grid">
-      <tr>
-        <td><a href="#" onclick="alert('Recept 1: Csárda klasszikus…');return false;">Csárda klasszikus</a></td>
-        <td><a href="#" onclick="alert('Recept 2: Sajtos bundában…');return false;">Sajtos bundában</a></td>
-        <td><a href="#" onclick="alert('Recept 3: Mustáros mázzal…');return false;">Mustáros mázzal</a></td>
-        <td><a href="#" onclick="alert('Recept 4: Fokhagymás ízvilág…');return false;">Fokhagymás ízvilág</a></td>
-        <td><a href="#" onclick="alert('Recept 5: Paprikás-panír…');return false;">Paprikás-panír</a></td>
-      </tr>
-      <tr>
-        <td><a href="#" onclick="alert('Recept 6: Mézes-mustáros…');return false;">Mézes-mustáros</a></td>
-        <td><a href="#" onclick="alert('Recept 7: Parmezános ropogós…');return false;">Parmezános ropogós</a></td>
-        <td><a href="#" onclick="alert('Recept 8: Zöldfűszeres bundában…');return false;">Zöldfűszeres bundában</a></td>
-        <td><a href="#" onclick="alert('Recept 9: Csípős-chilis panír…');return false;">Csípős-chilis panír</a></td>
-        <td><a href="#" onclick="alert('Recept 10: Görög joghurtos…');return false;">Görög joghurtos</a></td>
-      </tr>
-    </table>
-  </section>
+  <h2>Legjobb rántotthúsaink</h2>
+  <table class="recipe-grid">
+    <tr>
+      <td>
+        <a href="#"
+           onclick="alert(
+`Csárda klasszikus
+1. 25 dkg sertésszeletet enyhén klopfold ki.
+2. Sózd, borsozd, majd liszt–tojás–zsemlemorzsa sorrendben panírozd.
+3. Bő, forró olajban süsd oldalanként 4–5 percig.
+4. Szűrd le, tálald friss citromkarikával.`
+);return false;">
+          Csárda klasszikus
+        </a>
+      </td>
+      <td>
+        <a href="#"
+           onclick="alert(
+`Sajtos bundában
+1. Klopfold ki a hússzeleteket, sózd.
+2. A tojásba keverj reszelt parmezánt.
+3. Liszt–tojás+parmezán–zsemlemorzsa sorrendben panírozd.
+4. 5 percig süsd 180°C-on, amíg aranybarna nem lesz.`
+);return false;">
+          Sajtos bundában
+        </a>
+      </td>
+      <td>
+        <a href="#"
+           onclick="alert(
+`Mustáros mázzal
+1. Sózd, borsozd a húst.
+2. Panírozd klasszikusan.
+3. Süsd meg, majd kend meg dijoni mustárral.
+4. Tartsd vissza a sütőben 2 percre, hogy ráolvadt legyen.`
+);return false;">
+          Mustáros mázzal
+        </a>
+      </td>
+      <td>
+        <a href="#"
+           onclick="alert(
+`Fokhagymás ízvilág
+1. Hámozz meg 3 gerezd fokhagymát, préseld.
+2. Keverd össze tojással, sóval, borssal.
+3. Ebbe forgasd a hússzeleteket, majd panírozd zsemlemorzsában.
+4. 4 percig süsd mindkét oldalát.`
+);return false;">
+          Fokhagymás ízvilág
+        </a>
+      </td>
+      <td>
+        <a href="#"
+           onclick="alert(
+`Paprikás-panír
+1. Keverj 1 evőkanál édes paprikát a lisztbe.
+2. Panírozd a húsokat paprikás liszt–tojás–zsemlemorzsa sorrendben.
+3. 180°C-os olajban süsd 5 percig oldalanként.
+4. Szórj még egy kis paprikát a tetejére.`
+);return false;">
+          Paprikás-panír
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="#"
+           onclick="alert(
+`Mézes-mustáros
+1. 2 evőkanál mézet keverj 1 evőkanál mustárral.
+2. Süsd meg a húsokat simán panírozva.
+3. Kend meg a mézes keverékkel, majd 1 percig süsd tovább.
+4. Tálald friss petrezselyemmel.`
+);return false;">
+          Mézes-mustáros
+        </a>
+      </td>
+      <td>
+        <a href="#"
+           onclick="alert(
+`Parmezános ropogós
+1. A tojásba keverj 3 evőkanál reszelt parmezánt.
+2. Panírozd liszt–tojás+parmezán–zsemlemorzsa sorrendben.
+3. 180°C-on süsd 4 percig, majd 160°C-on 2 percig.
+4. Ropogós és aromás lesz.`
+);return false;">
+          Parmezános ropogós
+        </a>
+      </td>
+      <td>
+        <a href="#"
+           onclick="alert(
+`Zöldfűszeres bundában
+1. Apríts fel friss petrezselymet, kaprot, bazsalikomot.
+2. Szórd a zsemlemorzsába a fűszereket.
+3. Panírozd liszt–tojás–zöldfűszeres morzsa sorrendben.
+4. Süsd 5 percig, a fűszerek kiadják az aromájukat.`
+);return false;">
+          Zöldfűszeres bundában
+        </a>
+      </td>
+      <td>
+        <a href="#"
+           onclick="alert(
+`Csípős-chilis panír
+1. Keverj a zsemlemorzsához 1 teáskanál chiliport.
+2. Panírozd liszt–tojás–chilis morzsa sorrendben.
+3. 4 percig süsd 180°C-on, hogy megőrizze a csípősséget.
+4. Tálald lime cikkekkel.`
+);return false;">
+          Csípős-chilis panír
+        </a>
+      </td>
+      <td>
+        <a href="#"
+           onclick="alert(
+`Görög joghurtos
+1. Keverj natúr joghurtot, fokhagymaport, sót.
+2. Pihentesd benne a húst 30 percig.
+3. Panírozd simán, és süsd 4 percig oldalanként.
+4. Tálald tzatziki szósszal.`
+);return false;">
+          Görög joghurtos
+        </a>
+      </td>
+    </tr>
+  </table>
+</section>
 
   <!-- Külső receptgyűjtemények -->
   <section class="home-links">

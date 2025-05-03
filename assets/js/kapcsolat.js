@@ -1,39 +1,39 @@
-window.onload = () => {
-    document.getElementById('kuld').disabled = true;
-  };
-  
-  function ellenorizKapcsolat() {
-    let rendben = true, fokusz = null;
-    const reEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-  
-    const nev = document.getElementById('nev');
-    if (nev.value.length < 5) {
-      nev.style.background = '#fdd';
-      rendben = false;
-      fokusz = fokusz || nev;
-    } else {
-      nev.style.background = '#dfd';
-    }
-  
-    const email = document.getElementById('email');
-    if (!reEmail.test(email.value)) {
-      email.style.background = '#fdd';
-      rendben = false;
-      fokusz = fokusz || email;
-    } else {
-      email.style.background = '#dfd';
-    }
-  
-    const szoveg = document.getElementById('szoveg');
-    if (!szoveg.value.trim()) {
-      szoveg.style.background = '#fdd';
-      rendben = false;
-      fokusz = fokusz || szoveg;
-    } else {
-      szoveg.style.background = '#dfd';
-    }
-  
-    if (fokusz) fokusz.focus();
-    document.getElementById('kuld').disabled = !rendben;
-    return rendben;
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('kapcsolatForm');
+  const btn  = document.getElementById('kuld');
+
+  if (!form || !btn) {
+    console.error('Nem található a kapcsolat űrlap vagy a küldés gomb!');
+    return;
   }
+
+  // Kezdetben letiltjuk a gombot
+  btn.disabled = true;
+
+  // HTML5 validációs szabályok:
+  // - <input required minlength="5">
+  // - <input type="email" required>
+  // - <textarea required>
+  // Ezeket már beállítottuk a kapcsolat.php-ben
+
+  function validate() {
+    // checkValidity() true, ha minden required, minlength, type stb. rendben
+    const isValid = form.checkValidity();
+    btn.disabled = !isValid;
+  }
+
+  // Minden változásnál ellenőrizzük:
+  form.addEventListener('input', validate);
+  form.addEventListener('change', validate);
+
+  // Submit előtt is futtasd le:
+  form.addEventListener('submit', e => {
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      validate();
+    }
+  });
+
+  // Első állapot beállítása
+  validate();
+});

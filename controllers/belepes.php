@@ -5,15 +5,15 @@ session_start();
 try {
     $pdo = new PDO(
         'mysql:host=localhost;dbname=adatbf;charset=utf8mb4',
-        'adatbf','Gamfweb2025!',
-        [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]
+        'adatbf', 'Gamfweb2025!',
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 } catch (PDOException $e) {
-    die("Adatbázis-kapcsolódási hiba: ".$e->getMessage());
+    die("Adatbázis-kapcsolódási hiba: " . $e->getMessage());
 }
 
-$hiba = '';
-$regHiba = '';
+$hiba     = '';
+$regHiba  = '';
 $regSiker = '';
 
 // -------------------------
@@ -24,13 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $password = trim($_POST['password'] ?? '');
 
     $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :u');
-    $stmt->execute([':u'=>$username]);
+    $stmt->execute([':u' => $username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password'])) {
+        // fullname = családnév + utónév
         $_SESSION['user'] = [
-          'username' => $user['username'],
-          'fullname' => $user['fullname'] ?? $user['username']
+            'username' => $user['username'],
+            'fullname' => $user['lastname'] . ' ' . $user['firstname']
         ];
         header('Location: index.php?page=home');
         exit;
@@ -43,18 +44,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 // Regisztráció
 // -------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
-    $regu = trim($_POST['reg_username'] ?? '');
-    $regp = trim($_POST['reg_password'] ?? '');
+    $regu      = trim($_POST['reg_username']  ?? '');
+    $regp      = trim($_POST['reg_password']  ?? '');
+    $lastname  = trim($_POST['reg_lastname']  ?? '');
+    $firstname = trim($_POST['reg_firstname'] ?? '');
 
-    if (strlen($regu) < 3) {
+    // egyszerű validáció
+    if (strlen($lastname) < 2 || strlen($firstname) < 2) {
+        $regHiba = "Add meg a család- és utóneved is!";
+    } elseif (strlen($regu) < 3) {
         $regHiba = "A felhasználónév legyen legalább 3 karakter!";
     } elseif (strlen($regp) < 6) {
         $regHiba = "A jelszó legyen legalább 6 karakter!";
     } else {
         $hash = password_hash($regp, PASSWORD_DEFAULT);
-        $stmt = $pdo->prepare('INSERT INTO users (username,password) VALUES (:u,:p)');
+        $stmt = $pdo->prepare(
+            'INSERT INTO users (username, password, lastname, firstname)
+             VALUES (:u, :p, :l, :f)'
+        );
         try {
-            $stmt->execute([':u'=>$regu, ':p'=>$hash]);
+            $stmt->execute([
+                ':u' => $regu,
+                ':p' => $hash,
+                ':l' => $lastname,
+                ':f' => $firstname,
+            ]);
             $regSiker = "Sikeres regisztráció! Most jelentkezz be!";
         } catch (PDOException $e) {
             if ($e->getCode() === '23000') {
@@ -89,10 +103,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     <p style="color:green;"><?= htmlspecialchars($regSiker) ?></p>
   <?php endif; ?>
   <form method="post">
+    <label>Családnév:</label><br>
+    <input type="text" name="reg_lastname" required><br><br>
+
+    <label>Utónév:</label><br>
+    <input type="text" name="reg_firstname" required><br><br>
+
     <label>Felhasználónév:</label><br>
     <input type="text" name="reg_username" required><br><br>
+
     <label>Jelszó:</label><br>
     <input type="password" name="reg_password" required><br><br>
+
     <button type="submit" name="register">Regisztráció</button>
   </form>
 </section>

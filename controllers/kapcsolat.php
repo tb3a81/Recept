@@ -1,10 +1,9 @@
 <?php
-
 try {
     $pdo = new PDO(
         'mysql:host=localhost;dbname=adatbf;charset=utf8mb4',
         'adatbf',
-        'Gamfweb2025!', 
+        'Gamfweb2025!',
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 } catch (PDOException $e) {
@@ -13,10 +12,11 @@ try {
 
 $hibak = [];
 $siker = false;
+$nev = $email = $szoveg = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nev    = trim($_POST['nev']    ?? '');
-    $email  = trim($_POST['email']  ?? '');
+    $nev    = trim($_POST['nev'] ?? '');
+    $email  = trim($_POST['email'] ?? '');
     $szoveg = trim($_POST['szoveg'] ?? '');
 
     if (mb_strlen($nev) < 5) {
@@ -63,17 +63,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </ul>
     <?php endif; ?>
 
-    <form id="kapcsolatForm" method="post" onsubmit="return ellenorizKapcsolat();">
-      <label>Név:</label><br>
-      <input type="text" id="nev" name="nev" required><br><br>
+    <form id="kapcsolatForm" method="post">
+      <label for="nev">Név:</label>
+      <input  id="nev"   name="nev"   type="text" required value="<?= htmlspecialchars($nev) ?>">
 
-      <label>E-mail:</label><br>
-      <input type="email" id="email" name="email" required><br><br>
+      <label for="email">E-mail:</label>
+      <input  id="email" name="email" type="email" required value="<?= htmlspecialchars($email) ?>">
 
-      <label>Üzenet:</label><br>
-      <textarea id="szoveg" name="szoveg" rows="5" required></textarea><br><br>
+      <label for="szoveg">Üzenet:</label>
+      <textarea id="szoveg" name="szoveg" rows="5" required><?= htmlspecialchars($szoveg) ?></textarea>
 
-      <button type="submit" id="kuld">Küldés</button>
+      <button id="kuld" type="submit">Küldés</button>
     </form>
   <?php endif; ?>
 </section>

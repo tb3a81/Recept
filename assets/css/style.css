@@ -56,10 +56,11 @@ nav ul li a:hover {
 /* ================== MAIN CONTENT ================== */
 main {
   text-align: center;
+  padding: 2rem 0;
 }
 
-/* ================== INTRO SECTION ================== */
-.home-intro {
+/* ================== HOME PAGE ================== */
+.page-home .home-intro {
   background-color: #f3e5ab;
   color: #5b3a29;
   padding: 3rem 1rem;
@@ -67,26 +68,27 @@ main {
   margin-bottom: 2rem;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
-.home-intro h1 {
+.page-home .home-intro h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
-.home-intro p {
+.page-home .home-intro p {
   font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* ================== VIDEOS ================== */
-.home-media {
+.page-home .home-media {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-bottom: 2rem;
 }
-.home-media h2 {
+.page-home .home-media h2 {
   color: #8f5536;
   margin-bottom: 0.5rem;
 }
-.home-media .media-video {
+.page-home .home-media .media-video {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
@@ -94,54 +96,54 @@ main {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* ================== RECIPE GRID ================== */
-.home-recipes {
+.page-home .home-recipes {
   margin-bottom: 2rem;
 }
-.home-recipes h2 {
+.page-home .home-recipes h2 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
   color: #8f5536;
 }
-.home-recipes .recipe-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1rem;
-  list-style: none;
+.page-home .home-recipes .recipe-grid {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  max-width: 800px;
 }
-.home-recipes .recipe-grid td {
+.page-home .home-recipes .recipe-grid td {
   background-color: #fff;
   border-radius: 6px;
   padding: 1rem;
   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  text-align: center;
 }
-.home-recipes .recipe-grid a {
+.page-home .home-recipes .recipe-grid a {
   color: #8f5536;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s, transform 0.3s;
 }
-.home-recipes .recipe-grid a:hover {
+.page-home .home-recipes .recipe-grid a:hover {
   color: #a16b4e;
   transform: translateY(-2px);
 }
 
-/* ================== LINK COLLECTION ================== */
-.home-links {
+.page-home .home-links {
   margin-bottom: 2rem;
 }
-.home-links h2 {
+.page-home .home-links h2 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
   color: #8f5536;
 }
-.home-links .link-list {
+.page-home .home-links .link-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   list-style: none;
+  padding: 0;
 }
-.home-links .link-list a {
+.page-home .home-links .link-list a {
   display: block;
   background-color: #6a9c6a;
   color: #fff;
@@ -151,21 +153,20 @@ main {
   font-weight: 500;
   transition: background-color 0.3s, box-shadow 0.3s;
 }
-.home-links .link-list a:hover {
+.page-home .home-links .link-list a:hover {
   background-color: #7fbf7f;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* ================== MAP ================== */
-.home-map {
+.page-home .home-map {
   margin-bottom: 2rem;
 }
-.home-map h2 {
+.page-home .home-map h2 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
   color: #8f5536;
 }
-.home-map iframe {
+.page-home .home-map iframe {
   width: 100%;
   max-width: 600px;
   aspect-ratio: 4/3;
@@ -174,14 +175,53 @@ main {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* ================== FOOTER ================== */
-footer {
-  background-color: #8fbc8f;
+/* ================== CONTACT PAGE ================== */
+.page-kapcsolat form#kapcsolatForm {
+  background: #fff;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.page-kapcsolat form#kapcsolatForm > label,
+.page-kapcsolat form#kapcsolatForm > input,
+.page-kapcsolat form#kapcsolatForm > textarea,
+.page-kapcsolat form#kapcsolatForm > button {
+  display: block !important;
+  width: 100% !important;
+  margin-bottom: 1rem !important;
+}
+.page-kapcsolat form#kapcsolatForm label {
+  font-weight: 600;
+}
+.page-kapcsolat form#kapcsolatForm input,
+.page-kapcsolat form#kapcsolatForm textarea {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+}
+.page-kapcsolat form#kapcsolatForm textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.page-kapcsolat form#kapcsolatForm button#kuld {
+  width: auto !important;
+  padding: 0.6rem 1.2rem !important;
+  background-color: #6a9c6a;
   color: #fff;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  margin-top: 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.page-kapcsolat form#kapcsolatForm button#kuld:disabled {
+  background-color: #ccc !important;
+  cursor: not-allowed;
+}
+.page-kapcsolat form#kapcsolatForm button#kuld:not(:disabled):hover {
+  background-color: #7fbf7f !important;
 }
 
 /* ================== RESPONSIVE ================== */
@@ -189,10 +229,21 @@ footer {
   nav ul {
     flex-direction: column;
   }
-  .home-recipes .recipe-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  .page-home .recipe-grid {
+    display: block;
+    margin: 0 auto;
   }
-  .home-links .link-list {
+  .page-home .link-list {
     grid-template-columns: 1fr;
   }
+  .page-kapcsolat form#kapcsolatForm {
+    padding: 1rem;
+  }
 }
+
+
+
+
+
+
+
