@@ -1,5 +1,5 @@
 <?php
-// controllers/home.php
+
 ?>
 <div class="container">
 

@@ -1,5 +1,4 @@
 <?php
-// controllers/belepes.php
 session_start();
 
 try {
@@ -16,9 +15,7 @@ $hiba     = '';
 $regHiba  = '';
 $regSiker = '';
 
-// -------------------------
 // Belépés
-// -------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $username = trim($_POST['username'] ?? '');
     $password = trim($_POST['password'] ?? '');
@@ -28,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password'])) {
-        // fullname = családnév + utónév
         $_SESSION['user'] = [
             'username' => $user['username'],
             'fullname' => $user['lastname'] . ' ' . $user['firstname']
@@ -40,16 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     }
 }
 
-// -------------------------
 // Regisztráció
-// -------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     $regu      = trim($_POST['reg_username']  ?? '');
     $regp      = trim($_POST['reg_password']  ?? '');
     $lastname  = trim($_POST['reg_lastname']  ?? '');
     $firstname = trim($_POST['reg_firstname'] ?? '');
 
-    // egyszerű validáció
     if (strlen($lastname) < 2 || strlen($firstname) < 2) {
         $regHiba = "Add meg a család- és utóneved is!";
     } elseif (strlen($regu) < 3) {

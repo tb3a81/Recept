@@ -4,7 +4,8 @@
   $page = $_GET['page'] ?? 'home';
   $allowed = ['home','kepek','kapcsolat','belepes','kilepes','uzenetek'];
   if (!in_array($page, $allowed)) { $page = 'home'; }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
@@ -13,7 +14,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/kapcsolat.js" defer></script>
 </head>
-<!-- a body osztálya most már az aktuális oldal slug-ja lesz -->
+
 <body class="page-<?= htmlspecialchars($page) ?>">
   <header>
     <?php if (isset($_SESSION['user'])): ?>
@@ -49,7 +50,10 @@
   </main>
 
   <footer>
-    &copy; <?= date('Y') ?> <?= htmlspecialchars($config['sitename']) ?>
+    <div class="footer-content">
+      &copy; <?= date('Y') ?> <?= htmlspecialchars($config['sitename']) ?><br>
+      <span class="creator">Készítette: Bulla Gábor TB3A81</span>
+    </div>
   </footer>
 </body>
 </html>
